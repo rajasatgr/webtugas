@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tegar | Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER & MENU ===== -->
+  <header class="header">
+    <a href="#beranda" class="logo">Tegar Rajasa Susilo</a>
+
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+
+    <nav class="nav" id="nav">
+      <a href="#tentang">Tentang</a>
+      <a href="#proyek">Proyek</a>
+      <a href="#kontak">Kontak</a>
+      <button class="theme-btn" id="themeBtn" type="button">Mode gelap</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== BERANDA ===== -->
+    <section class="hero" id="beranda">
+      <p class="salam"><span id="salam">Halo</span>, selamat datang.</p>
+      <h1>Saya Tegar, mahasiswa yang sedang belajar membuat website.</h1>
+      <p class="hero-desc">
+        Halaman sederhana ini yang dibuat dengan HTML, CSS, dan JavaScript.
+        Untuk tugas PTI.
+      </p>
+      <a class="btn" href="#proyek">Lihat proyek</a>
+      <a class="btn btn-outline" href="#kontak">Hubungi saya</a>
+    </section>
+
+    <!-- ===== TENTANG ===== -->
+    <section class="section" id="tentang">
+      <h2>Tentang saya</h2>
+      <p>
+        Saya kuliah dan saya suka belajar hal baru, terutama tentang pemrograman.
+        Di waktu luang, saya kadang memancing bersama teman untuk melepas penat.
+      </p>
+      <p>
+        Saya sedang belajar HTML untuk struktur halaman, CSS untuk tampilan,
+        dan JavaScript supaya halaman bisa merespons klik dan input.
+      </p>
+    </section>
+
+    <!-- ===== PROYEK ===== -->
+    <section class="section" id="proyek">
+      <h2>Proyek</h2>
+      <ul class="proyek-list">
+        <li>
+          <h3>Web portofolio</h3>
+          <p>Halaman untuk menampilkan profil dan karya saya.</p>
+          <span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">JavaScript</span>
+        </li>
+        <li>
+          <h3>Daftar tugas</h3>
+          <p>Aplikasi kecil untuk mencatat tugas kuliah.</p>
+          <span class="tag">JavaScript</span>
+        </li>
+        <li>
+          <h3>Halaman jadwal</h3>
+          <p>Tabel jadwal kuliah yang rapi dan mudah dibaca di HP.</p>
+          <span class="tag">HTML</span> <span class="tag">CSS</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== KONTAK ===== -->
+    <section class="section" id="kontak">
+      <h2>Kontak</h2>
+      <p>Isi formulir ini untuk mengirim pesan.</p>
+
+      <form class="form" id="formKontak" novalidate>
+        <label for="nama">Nama</label>
+        <input type="text" id="nama" name="nama" autocomplete="name">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email">
+
+        <label for="pesan">Pesan</label>
+        <textarea id="pesan" name="pesan" rows="4"></textarea>
+
+        <button class="btn" type="submit">Kirim pesan</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="tahun">2026</span> Tegar Rajasa Susilo</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
