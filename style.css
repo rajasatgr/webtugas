@@ -5,18 +5,18 @@
   --teks: #16213a;
   --teks-redup: #526079;
   --garis: #d5dce8;
-  --aksen: #2a56e0;
+  --aksen: #2a8ee0;
   --aksen-teks: #ffffff;
   --permukaan: #ffffff;
 }
 
 /* Warna untuk mode gelap (diaktifkan oleh script.js) */
 :root[data-tema="gelap"] {
-  --bg: #0f1626;
+  --bg: #0a0d14;
   --teks: #e8edf7;
   --teks-redup: #9aa8c2;
   --garis: #26324d;
-  --aksen: #7a9bff;
+  --aksen: #2a8ee0;
   --aksen-teks: #0f1626;
   --permukaan: #162039;
 }
