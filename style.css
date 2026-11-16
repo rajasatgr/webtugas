@@ -167,12 +167,6 @@ p + p {
   filter: brightness(1.1);
 }
 
-.btn-outline {
-  color: var(--aksen);
-  background: transparent;
-  margin-left: 0.5rem;
-}
-
 /* ===== PROYEK ===== */
 .proyek-list {
   list-style: none;
@@ -200,47 +194,6 @@ p + p {
   border: 1px solid var(--garis);
   border-radius: 999px;
   padding: 0.1rem 0.7rem;
-}
-
-/* ===== FORMULIR ===== */
-.form {
-  display: grid;
-  gap: 0.5rem;
-  margin-top: 1.2rem;
-  max-width: 30rem;
-}
-
-.form label {
-  font-weight: 600;
-  margin-top: 0.5rem;
-}
-
-.form input,
-.form textarea {
-  font: inherit;
-  color: var(--teks);
-  background: var(--permukaan);
-  border: 1px solid var(--garis);
-  border-radius: 8px;
-  padding: 0.6rem 0.8rem;
-}
-
-.form .btn {
-  justify-self: start;
-  margin-top: 1rem;
-}
-
-.form-status {
-  min-height: 1.5rem;
-  font-weight: 600;
-}
-
-.form-status.error {
-  color: #d1342f;
-}
-
-.form-status.sukses {
-  color: #1c8a4a;
 }
 
 /* ===== FOOTER ===== */
@@ -273,11 +226,6 @@ p + p {
 
   .nav.terbuka {
     display: flex;
-  }
-
-  .btn-outline {
-    margin-left: 0;
-    margin-top: 0.6rem;
   }
 }
 
