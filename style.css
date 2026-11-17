@@ -1,93 +1,289 @@
-// ===== 1. SALAM SESUAI JAM =====
-const salam = document.getElementById("salam");
-const jam = new Date().getHours();
-
-if (jam < 11) {
-  salam.textContent = "Selamat pagi";
-} else if (jam < 15) {
-  salam.textContent = "Selamat siang";
-} else if (jam < 18) {
-  salam.textContent = "Selamat sore";
-} else {
-  salam.textContent = "Selamat malam";
+/* ===== WARNA & UKURAN DASAR =====
+   Ubah warna di sini, semua halaman ikut berubah. */
+:root {
+  --bg: #f6f8fb;
+  --teks: #16213a;
+  --teks-redup: #526079;
+  --garis: #d5dce8;
+  --aksen: #2a8ee0;
+  --aksen-teks: #ffffff;
+  --permukaan: #ffffff;
 }
 
-// ===== 2. TAHUN OTOMATIS DI FOOTER =====
-document.getElementById("tahun").textContent = new Date().getFullYear();
+/* Warna untuk mode gelap (diaktifkan oleh script.js) */
+:root[data-tema="gelap"] {
+  --bg: #0a0d14;
+  --teks: #e8edf7;
+  --teks-redup: #9aa8c2;
+  --garis: #26324d;
+  --aksen: #2a8ee0;
+  --aksen-teks: #0f1626;
+  --permukaan: #162039;
+}
 
-// ===== 3. MENU DI HP =====
-const menuBtn = document.getElementById("menuBtn");
-const nav = document.getElementById("nav");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-menuBtn.addEventListener("click", function () {
-  const terbuka = nav.classList.toggle("terbuka");
-  menuBtn.setAttribute("aria-expanded", terbuka);
-});
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* supaya judul tidak tertutup header */
+}
 
-// Tutup menu setelah salah satu link diklik
-nav.querySelectorAll("a").forEach(function (link) {
-  link.addEventListener("click", function () {
-    nav.classList.remove("terbuka");
-    menuBtn.setAttribute("aria-expanded", "false");
-  });
-});
+body {
+  font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--teks);
+  line-height: 1.65;
+  font-size: 1.05rem;
+}
 
-// ===== 4. MODE GELAP / TERANG =====
-const themeBtn = document.getElementById("themeBtn");
-const root = document.documentElement;
+a {
+  color: inherit;
+}
 
-function setTema(tema) {
-  if (tema === "gelap") {
-    root.setAttribute("data-tema", "gelap");
-    themeBtn.textContent = "Mode terang";
-  } else {
-    root.removeAttribute("data-tema");
-    themeBtn.textContent = "Mode gelap";
+:focus-visible {
+  outline: 3px solid var(--aksen);
+  outline-offset: 3px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--garis);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--teks-redup);
+}
+
+.nav a:hover {
+  color: var(--aksen);
+}
+
+.menu-btn {
+  display: none; /* hanya muncul di layar kecil */
+}
+
+.menu-btn,
+.theme-btn {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--teks);
+  background: transparent;
+  border: 1px solid var(--garis);
+  border-radius: 6px;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+}
+
+.menu-btn:hover,
+.theme-btn:hover {
+  border-color: var(--aksen);
+}
+
+/* ===== BAGIAN UMUM ===== */
+.hero,
+.section {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.section {
+  border-top: 1px solid var(--garis);
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3.3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.2rem;
+}
+
+h2 {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+p + p {
+  margin-top: 0.9rem;
+}
+
+/* ===== BERANDA ===== */
+.salam {
+  color: var(--aksen);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.hero-desc {
+  color: var(--teks-redup);
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== TOMBOL ===== */
+.btn {
+  display: inline-block;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--aksen-teks);
+  background: var(--aksen);
+  border: 2px solid var(--aksen);
+  border-radius: 8px;
+  padding: 0.65rem 1.3rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.btn-outline {
+  color: var(--aksen);
+  background: transparent;
+  margin-left: 0.5rem;
+}
+
+/* ===== PROYEK ===== */
+.proyek-list {
+  list-style: none;
+}
+
+.proyek-list li {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--garis);
+}
+
+.proyek-list li:first-child {
+  padding-top: 0;
+}
+
+.proyek-list p {
+  color: var(--teks-redup);
+  margin: 0.2rem 0 0.6rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--aksen);
+  background: var(--permukaan);
+  border: 1px solid var(--garis);
+  border-radius: 999px;
+  padding: 0.1rem 0.7rem;
+}
+
+/* ===== FORMULIR ===== */
+.form {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+  max-width: 30rem;
+}
+
+.form label {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.form input,
+.form textarea {
+  font: inherit;
+  color: var(--teks);
+  background: var(--permukaan);
+  border: 1px solid var(--garis);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+}
+
+.form .btn {
+  justify-self: start;
+  margin-top: 1rem;
+}
+
+.form-status {
+  min-height: 1.5rem;
+  font-weight: 600;
+}
+
+.form-status.error {
+  color: #d1342f;
+}
+
+.form-status.sukses {
+  color: #1c8a4a;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--teks-redup);
+  border-top: 1px solid var(--garis);
+}
+
+/* ===== LAYAR KECIL (HP) ===== */
+@media (max-width: 640px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.5rem 1.5rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--garis);
+  }
+
+  .nav.terbuka {
+    display: flex;
+  }
+
+  .btn-outline {
+    margin-left: 0;
+    margin-top: 0.6rem;
   }
 }
 
-// Ingat pilihan terakhir (dibungkus try supaya tidak error jika penyimpanan diblokir)
-try {
-  setTema(localStorage.getItem("tema") || "terang");
-} catch (e) {
-  setTema("terang");
+/* Hormati pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
-
-themeBtn.addEventListener("click", function () {
-  const temaBaru = root.getAttribute("data-tema") === "gelap" ? "terang" : "gelap";
-  setTema(temaBaru);
-  try {
-    localStorage.setItem("tema", temaBaru);
-  } catch (e) {}
-});
-
-// ===== 5. FORMULIR KONTAK =====
-const form = document.getElementById("formKontak");
-const status = document.getElementById("formStatus");
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault(); // cegah halaman reload
-
-  const nama = form.nama.value.trim();
-  const email = form.email.value.trim();
-  const pesan = form.pesan.value.trim();
-
-  status.className = "form-status";
-
-  if (nama === "" || email === "" || pesan === "") {
-    status.textContent = "Semua kolom harus diisi.";
-    status.classList.add("error");
-    return;
-  }
-
-  if (!email.includes("@")) {
-    status.textContent = "Alamat email belum benar. Contoh: nama@email.com";
-    status.classList.add("error");
-    return;
-  }
-
-  // Catatan: formulir ini belum mengirim data ke server.
-  status.textContent = "Terima kasih, " + nama + "! Pesanmu sudah diterima.";
-  status.classList.add("sukses");
-  form.reset();
-});
