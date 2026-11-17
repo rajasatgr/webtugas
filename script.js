@@ -60,3 +60,34 @@ themeBtn.addEventListener("click", function () {
     localStorage.setItem("tema", temaBaru);
   } catch (e) {}
 });
+
+// ===== 5. FORMULIR KONTAK =====
+const form = document.getElementById("formKontak");
+const status = document.getElementById("formStatus");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // cegah halaman reload
+
+  const nama = form.nama.value.trim();
+  const email = form.email.value.trim();
+  const pesan = form.pesan.value.trim();
+
+  status.className = "form-status";
+
+  if (nama === "" || email === "" || pesan === "") {
+    status.textContent = "Semua kolom harus diisi.";
+    status.classList.add("error");
+    return;
+  }
+
+  if (!email.includes("@")) {
+    status.textContent = "Alamat email belum benar. Contoh: nama@email.com";
+    status.classList.add("error");
+    return;
+  }
+
+  // Catatan: formulir ini belum mengirim data ke server.
+  status.textContent = "Terima kasih, " + nama + "! Pesanmu sudah diterima.";
+  status.classList.add("sukses");
+  form.reset();
+});
